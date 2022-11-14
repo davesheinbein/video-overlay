@@ -1,0 +1,22 @@
+.video {
+    &__canvas {
+        
+    }
+    &__iframe {
+
+    }
+    &__vid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        &-player{
+
+        }
+        &-canvas{
+            position: absolute;
+        }
+    }
+}
