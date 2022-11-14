@@ -10,8 +10,9 @@
         justify-content: center;
         align-items: center;
         position: relative;
-        -webkit-transform: scaleX(-1);
-        transform: scaleX(-1);
+        // flips the video to move the direction you do
+        // -webkit-transform: scaleX(-1);
+        // transform: scaleX(-1);
         &-player{
 
         }

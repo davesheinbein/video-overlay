@@ -35,11 +35,20 @@ const Video = () => {
 
 	const startVideo = () => {
 		if (!!videoRef && !!videoRef.current) {
-			navigator.getUserMedia(
-				{ video: {} },
-				(stream) => (videoRef.current.srcObject = stream),
-				(err) => console.error('error:', err)
-			);
+			// navigator.mediaDevices.getUserMedia(
+			// 	{ video: {} },
+			// 	(stream) => (videoRef.current.srcObject = stream),
+			// 	(err) => console.error('error:', err)
+			// );
+
+			navigator.mediaDevices
+				.getUserMedia({
+					video: true,
+				})
+				.then(
+					(stream) => (videoRef.current.srcObject = stream),
+					(err) => console.log(err)
+				);
 		}
 	};
 
@@ -50,7 +59,6 @@ const Video = () => {
 					setDisplay(false);
 				}
 
-				// canvasRef.current;
 				if (!!canvasRef && !!canvasRef.current) {
 					canvasRef.current.innerHTML =
 						faceapi.createCanvasFromMedia(videoRef.current);
@@ -125,7 +133,6 @@ const Video = () => {
 			<div className='video__vid'>
 				<video
 					id='webcam'
-					// playsInline
 					width={videoWidth}
 					height={videoHeight}
 					ref={videoRef}
