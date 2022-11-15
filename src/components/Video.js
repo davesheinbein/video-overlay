@@ -8,12 +8,13 @@ const Video = () => {
 	const videoWidth = 720;
 	const videoHeight = 560;
 
-	const [display, setDisplay] = useState(false);
+	const [displayFaceTracking, setDisplayFaceTracking] =
+		useState(false);
 
 	useEffect(() => {
 		const loadModels = async () => {
 			const MODEL_URL = process.env.PUBLIC_URL + '/models';
-			setDisplay(true);
+			setDisplayFaceTracking(true);
 			Promise.all([
 				faceapi.nets.tinyFaceDetector.loadFromUri(
 					MODEL_URL
@@ -55,8 +56,8 @@ const Video = () => {
 	const handleVideoOnPlay = () => {
 		if (!!videoRef && !!videoRef.current) {
 			setInterval(async () => {
-				if (!!display) {
-					setDisplay(false);
+				if (!!displayFaceTracking) {
+					setDisplayFaceTracking(false);
 				}
 
 				if (!!canvasRef && !!canvasRef.current) {
@@ -125,11 +126,10 @@ const Video = () => {
 				width='560'
 				height='315'
 				src='https://www.youtube.com/embed/cLNyF1Zw5tg'></iframe> */}
-			{!!display ? (
-				<h1 id='status'>Ready</h1>
-			) : (
-				<h1 id='status'>Loading...</h1>
-			)}
+			<h1 id='status'>
+				Face Tracking:{' '}
+				{!displayFaceTracking ? 'Active' : 'Loading...'}
+			</h1>
 			<div className='video__vid'>
 				<video
 					id='webcam'
