@@ -80,6 +80,27 @@ const Video = () => {
 						)
 						.withFaceLandmarks()
 						.withFaceExpressions();
+					console.log('🚀 ~ detections', detections);
+					console.log(
+						'🚀 ~ detections[0].alignedRect',
+						detections[0].alignedRect
+					);
+					console.log(
+						'🚀 ~ detections[0].detection',
+						detections[0].detection
+					);
+					console.log(
+						'🚀 ~ detections[0].expressions',
+						detections[0].expressions
+					);
+					console.log(
+						'🚀 ~ detections[0].landmarks',
+						detections[0].landmarks
+					);
+					console.log(
+						'🚀 ~ detections[0].unshiftedLandmarks',
+						detections[0].unshiftedLandmarks
+					);
 
 					const resizedDetections = faceapi.resizeResults(
 						detections,
