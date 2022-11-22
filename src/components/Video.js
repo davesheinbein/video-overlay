@@ -11,6 +11,28 @@ const Video = () => {
 	const [displayFaceTracking, setDisplayFaceTracking] =
 		useState(false);
 
+	let iframe = !!document.getElementById('iframeId')
+		? document.getElementById('iframeId')
+		: '';
+	console.log('🚀 ~ iframe', !!iframe ? iframe : null);
+	let innerDoc = iframe?.contentDocument;
+	// let innerContentWindow = iframe?.contentWindow?.document;
+
+	console.log(
+		'🚀 ~ innerDoc',
+		!!innerDoc ? innerDoc : 'null'
+	);
+	// console.log(
+	// 	'🚀 ~ innerContentWindow',
+	// 	!!innerContentWindow ? innerContentWindow : 'null'
+	// );
+
+	const closeWebcam = () => {
+		videoRef.current.pause();
+		videoRef.current.srcObject.getTracks()[0].stop();
+		setDisplayFaceTracking(false);
+	};
+
 	useEffect(() => {
 		const loadModels = async () => {
 			const MODEL_URL = process.env.PUBLIC_URL + '/models';
@@ -80,27 +102,27 @@ const Video = () => {
 						)
 						.withFaceLandmarks()
 						.withFaceExpressions();
-					console.log('🚀 ~ detections', detections);
-					console.log(
-						'🚀 ~ detections[0].alignedRect',
-						detections[0].alignedRect
-					);
-					console.log(
-						'🚀 ~ detections[0].detection',
-						detections[0].detection
-					);
-					console.log(
-						'🚀 ~ detections[0].expressions',
-						detections[0].expressions
-					);
-					console.log(
-						'🚀 ~ detections[0].landmarks',
-						detections[0].landmarks
-					);
-					console.log(
-						'🚀 ~ detections[0].unshiftedLandmarks',
-						detections[0].unshiftedLandmarks
-					);
+					// console.log('🚀 ~ detections', detections);
+					// console.log(
+					// 	'🚀 ~ detections[0].alignedRect',
+					// 	detections[0].alignedRect
+					// );
+					// console.log(
+					// 	'🚀 ~ detections[0].detection',
+					// 	detections[0].detection
+					// );
+					// console.log(
+					// 	'🚀 ~ detections[0].expressions',
+					// 	detections[0].expressions
+					// );
+					// console.log(
+					// 	'🚀 ~ detections[0].landmarks',
+					// 	detections[0].landmarks
+					// );
+					// console.log(
+					// 	'🚀 ~ detections[0].unshiftedLandmarks',
+					// 	detections[0].unshiftedLandmarks
+					// );
 
 					const resizedDetections = faceapi.resizeResults(
 						detections,
@@ -147,10 +169,13 @@ const Video = () => {
 				width='560'
 				height='315'
 				src='https://www.youtube.com/embed/cLNyF1Zw5tg'></iframe> */}
-			<h1 id='status'>
-				Face Tracking:{' '}
-				{!displayFaceTracking ? 'Active' : 'Loading...'}
-			</h1>
+			<span>
+				<h1 id='status'>
+					Face Tracking:{' '}
+					{!displayFaceTracking ? 'Active' : 'Loading...'}
+				</h1>
+				<button onClick={closeWebcam}>Close</button>
+			</span>
 			<div className='video__vid'>
 				<video
 					id='webcam'
@@ -166,6 +191,15 @@ const Video = () => {
 					className='video__vid-canvas'
 					ref={canvasRef}></canvas>
 			</div>
+			<iframe
+				width='560'
+				height='315'
+				src='https://www.youtube.com/embed/gODZzSOelss'
+				title='YouTube video player'
+				frameBorder='0'
+				allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+				allowFullScreen
+				id='iframeId'></iframe>
 		</div>
 	);
 };
