@@ -11,23 +11,7 @@ const Video = () => {
 	const [displayFaceTracking, setDisplayFaceTracking] =
 		useState(false);
 
-	let iframe = !!document.getElementById('iframeId')
-		? document.getElementById('iframeId')
-		: '';
-	console.log('🚀 ~ iframe', !!iframe ? iframe : null);
-	let innerDoc = iframe?.contentDocument;
-	// let innerContentWindow = iframe?.contentWindow?.document;
-
-	console.log(
-		'🚀 ~ innerDoc',
-		!!innerDoc ? innerDoc : 'null'
-	);
-	// console.log(
-	// 	'🚀 ~ innerContentWindow',
-	// 	!!innerContentWindow ? innerContentWindow : 'null'
-	// );
-
-	const closeWebcam = () => {
+	const pauseWebcam = () => {
 		videoRef.current.pause();
 		videoRef.current.srcObject.getTracks()[0].stop();
 		setDisplayFaceTracking(false);
@@ -161,6 +145,45 @@ const Video = () => {
 	// }
 	// faceapi.nets.faceRecognitionNet.loadFromUri;
 
+	const checkInnerDocs = () => {
+		const iframe = !!document.getElementById('iframeId')
+			? document.getElementById('iframeId')
+			: '';
+		if (!!iframe) {
+			console.log('🚀 ~ iframe', !!iframe ? iframe : null);
+			let innerDoc = iframe?.contentDocument;
+			// let innerContentWindow =
+			// 	iframe?.contentWindow?.document;
+
+			console.log(
+				'🚀 ~ innerDoc',
+				!!innerDoc ? innerDoc : 'null'
+			);
+			console.log(
+				'🚀 ~ innerDoc',
+				!!innerDoc ? innerDoc.document : 'null'
+			);
+			console.log(
+				'🚀 ~ innerDoc',
+				!!innerDoc ? innerDoc.contentDocument : 'null'
+			);
+			console.log(
+				'🚀 ~ innerDoc',
+				!!innerDoc ? innerDoc.contentWindow : 'null'
+			);
+			console.log(
+				'🚀 ~ innerDoc',
+				!!innerDoc
+					? innerDoc.contentWindow.document
+					: 'null'
+			);
+			// console.log(
+			// 	'🚀 ~ innerContentWindow',
+			// 	!!innerContentWindow ? innerContentWindow : 'null'
+			// );
+		}
+	};
+
 	return (
 		<div className='video'>
 			{/* <iframe
@@ -174,9 +197,10 @@ const Video = () => {
 					Face Tracking:{' '}
 					{!displayFaceTracking ? 'Active' : 'Loading...'}
 				</h1>
-				<button onClick={closeWebcam}>Close</button>
+				<button onClick={pauseWebcam}>Close</button>
+				<button onClick={checkInnerDocs}>Consol log</button>
 			</span>
-			<div className='video__vid'>
+			{/* <div className='video__vid'>
 				<video
 					id='webcam'
 					width={videoWidth}
@@ -190,7 +214,7 @@ const Video = () => {
 					id='output'
 					className='video__vid-canvas'
 					ref={canvasRef}></canvas>
-			</div>
+			</div> */}
 			<iframe
 				width='560'
 				height='315'
@@ -198,6 +222,7 @@ const Video = () => {
 				title='YouTube video player'
 				frameBorder='0'
 				allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+				sandbox='allow-same-origin'
 				allowFullScreen
 				id='iframeId'></iframe>
 		</div>
