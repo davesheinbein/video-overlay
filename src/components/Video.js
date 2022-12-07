@@ -200,7 +200,7 @@ const Video = () => {
 				<button onClick={pauseWebcam}>Close</button>
 				<button onClick={checkInnerDocs}>Consol log</button>
 			</span>
-			{/* <div className='video__vid'>
+			<div className='video__vid'>
 				<video
 					id='webcam'
 					width={videoWidth}
@@ -214,7 +214,7 @@ const Video = () => {
 					id='output'
 					className='video__vid-canvas'
 					ref={canvasRef}></canvas>
-			</div> */}
+			</div>
 			<iframe
 				width='560'
 				height='315'
