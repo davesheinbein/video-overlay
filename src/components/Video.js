@@ -225,6 +225,7 @@ const Video = () => {
 				sandbox='allow-same-origin'
 				allowFullScreen
 				id='iframeId'></iframe>
+                
 		</div>
 	);
 };
