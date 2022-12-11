@@ -155,28 +155,28 @@ const Video = () => {
 			// let innerContentWindow =
 			// 	iframe?.contentWindow?.document;
 
-			console.log(
-				'🚀 ~ innerDoc',
-				!!innerDoc ? innerDoc : 'null'
-			);
-			console.log(
-				'🚀 ~ innerDoc',
-				!!innerDoc ? innerDoc.document : 'null'
-			);
-			console.log(
-				'🚀 ~ innerDoc',
-				!!innerDoc ? innerDoc.contentDocument : 'null'
-			);
-			console.log(
-				'🚀 ~ innerDoc',
-				!!innerDoc ? innerDoc.contentWindow : 'null'
-			);
-			console.log(
-				'🚀 ~ innerDoc',
-				!!innerDoc
-					? innerDoc.contentWindow.document
-					: 'null'
-			);
+			// console.log(
+			// 	'🚀 ~ innerDoc',
+			// 	!!innerDoc ? innerDoc : 'null'
+			// );
+			// console.log(
+			// 	'🚀 ~ innerDoc',
+			// 	!!innerDoc ? innerDoc.document : 'null'
+			// );
+			// console.log(
+			// 	'🚀 ~ innerDoc',
+			// 	!!innerDoc ? innerDoc.contentDocument : 'null'
+			// );
+			// console.log(
+			// 	'🚀 ~ innerDoc',
+			// 	!!innerDoc ? innerDoc.contentWindow : 'null'
+			// );
+			// console.log(
+			// 	'🚀 ~ innerDoc',
+			// 	!!innerDoc
+			// 		? innerDoc.contentWindow.document
+			// 		: 'null'
+			// );
 			// console.log(
 			// 	'🚀 ~ innerContentWindow',
 			// 	!!innerContentWindow ? innerContentWindow : 'null'
@@ -200,7 +200,7 @@ const Video = () => {
 				<button onClick={pauseWebcam}>Close</button>
 				<button onClick={checkInnerDocs}>Consol log</button>
 			</span>
-			<div className='video__vid'>
+			{/* <div className='video__vid'>
 				<video
 					id='webcam'
 					width={videoWidth}
@@ -214,7 +214,7 @@ const Video = () => {
 					id='output'
 					className='video__vid-canvas'
 					ref={canvasRef}></canvas>
-			</div>
+			</div> */}
 			<iframe
 				width='560'
 				height='315'
